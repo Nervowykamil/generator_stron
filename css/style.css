@@ -1,0 +1,97 @@
+html, body {
+	margin: 0;
+	padding: 0;
+	color: #000;
+	background-color: #fff;
+	height: 100%;
+}
+
+.btn {
+  position: absolute;
+  margin: 0 auto;
+  top: 40%; bottom:0px; /* wyrównanie w pionie */
+  left:0; right:0; /* wyrównanie w poziomie */
+  height:10%;
+  width:150px;
+  background: url("../img/logo_m.png") center; 
+}
+
+.btn:hover {
+  margin: 0 auto;
+  top: 39%; bottom:0; /* wyrównanie w pionie */
+  left:0; right:0; /* wyrównanie w poziomie */
+  position: absolute;
+  height:11%;
+  width:150px;
+  background: url("../img/logo_m.png") center; 
+  box-shadow: 0px 0px 50px #77DD77;
+}
+
+.left {
+    overflow: hidden;
+    position: relative;
+    margin  : 0px;
+    border  : none;
+
+    background: aqua; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient( left, blue, aqua); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient( left, blue, aqua); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient( left, blue, aqua); /* For Firefox 3.6 to 15 */
+    background: linear-gradient( left, blue, aqua); /* Standard syntax */
+
+    float: left;
+    width: 10%;
+    height: 100%;
+}
+
+.right {
+    overflow: hidden;
+    position: relative;
+    margin  : 0px;
+    border  : none;
+    float   : right;
+
+    background: aqua; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient( right, blue, aqua); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient( right, blue, aqua); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient( right, blue, aqua); /* For Firefox 3.6 to 15 */
+    background: linear-gradient( right, blue, aqua); /* Standard syntax */
+
+
+    width:10%; 
+    height:100%;
+}
+
+.c_filler {
+    margin  : 0px;
+    border  : none;
+    background-color:aqua;
+    width: 100%;
+    height: 100%;
+    float   : left;
+}
+
+.c_up {
+    margin  : 0px;
+    border  : none;
+    float   : right;
+    background-color:#77DD77;
+    float: left;
+    width:100%;
+    height:50%;
+    
+    background: aqua; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(  bottom, #77DD77, #0BB5FF); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient( bottom, #77DD77, #0BB5FF); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient( bottom, #77DD77, #0BB5FF); /* For Firefox 3.6 to 15 */
+    background: linear-gradient( bottom, #77DD77, #0BB5FF); /* Standard syntax */
+}
+
+.c_down {
+    margin  : 0px;
+    border  : none;
+    float   : right;
+    background-color:#77DD77;
+    width:100%;
+    height:50%;
+}

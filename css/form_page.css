@@ -1,0 +1,35 @@
+body
+{
+    background-color: #6EDA83;
+    color: #2B3399;
+}
+
+img 
+{
+    width: 30vh;
+}
+
+#first_table
+{
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+#first_table td
+{
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.second_table
+{
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.second_table td
+{
+    padding-left: 3vh;
+    padding-right: 3vh;
+    width: 15%;
+}
