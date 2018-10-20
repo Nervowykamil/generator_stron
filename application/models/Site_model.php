@@ -15,7 +15,7 @@ class Site_model extends CI_Model {
 	
 	public function getName()
 	{
-		return "daniel";
+		return "name";
 	}
 	
 	

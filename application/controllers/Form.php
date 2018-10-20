@@ -18,6 +18,16 @@ class Form extends CI_Controller
 	{        
         $this->load->helper(array('form', 'url'));
         $this->load->database();
+        $this->load->library('session');
+        
+        if($this->session->has_userdata('zalogowany'))
+        {
+            if ($this->session->userdata('zalogowany') != true)
+            {
+                redirect('/welcome');
+            }
+        } else
+        { redirect('/welcome');}
 
 		$this->load->library('form_validation');
         $this->form_validation->set_rules('news', 'Aktualności', 'required');

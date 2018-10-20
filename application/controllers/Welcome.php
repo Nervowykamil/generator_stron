@@ -22,7 +22,107 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-        $this->load->helper('url');
-		$this->load->view('welcome_message');
+        $this->load->helper(array('form', 'url'));
+        $this->load->view('welcome_message');
 	}
+    
+    
+    public function login()
+    {
+        $this->load->helper('url');
+        $this->load->library('session');
+        
+        
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('login', 'Login', 'required');
+        $this->form_validation->set_rules('password', 'Hasło', 'required');
+        
+        if ($this->form_validation->run() == false)
+        {
+            $this->load->view('welcome_message');
+            return;
+        }
+        
+        $this->session->set_userdata('zalogowany', false);
+        $haslo = $_POST['password'];
+        
+        $this->load->database();
+        
+        $query = $this->db->query('SELECT id, login, haslo FROM uzytkownicy WHERE login ="'.$_POST['login'].'";');
+        foreach ($query->result() as $row)
+        {
+            if ($row->login != $_POST['login'] || $row->haslo != $_POST['password'])
+            {
+                $this->session->set_userdata('zalogowany', false);
+                redirect('/welcome/badpassword');
+                return;
+            } else
+            {
+                $this->session->set_userdata('login', $_POST['login']);
+                $this->session->set_userdata('zalogowany', true);
+            }
+        }
+        
+        redirect('/form');
+    }
+    
+    public function logout()
+    {
+        $this->load->helper(array('form', 'url'));
+        $this->load->library('session');
+        $this->session->sess_destroy();
+        
+        $_POST['message'] = "Wylogowano.";
+        $this->load->view("welcome_message");
+    }
+    
+    public function badpassword()
+    {
+        $this->load->helper(array('form', 'url'));
+        $_POST['message'] = "Podane hasło jest nie prawidłowe.";
+        $this->load->view("/welcome_message");
+    }
+    
+    public function register_page()
+    {
+        $this->load->helper(array('form', 'url'));
+        
+        $this->load->view('register_page');
+        return;
+    }
+    
+    public function register()
+    {
+        $this->load->helper(array('form', 'url'));
+        $this->load->library('form_validation');
+        
+        $this->form_validation->set_rules('login', 'Login', 'required');
+        $this->form_validation->set_rules('password', 'Hasło', 'required');
+        
+        $login = $_POST['login'];
+        $password = $_POST['password'];
+        
+        $this->load->database();
+        
+        $query = $this->db->query('SELECT id, login, haslo FROM uzytkownicy WHERE login ="'.$_POST['login'].'";');
+        $isFree = true;
+        foreach ($query->result() as $row)
+        {
+            $isFree = false;
+            $_POST['message'] = "Login : ".$login." jest już używany, wybierz inny.";
+            $this->load->view('register_page');
+            return;
+        }
+        
+        if($this->db->query('INSERT INTO uzytkownicy (login, haslo) VALUES ("'.$login.'", "'.$password.'");'))
+        {
+            $_POST['message'] = "Zarejestrowano jako ".$login.", teraz możesz się zalogować.";
+            $this->load->view('welcome_message');
+            return;
+        }
+        
+        
+        $this->load->view('register_page');
+        return;
+    }
 }

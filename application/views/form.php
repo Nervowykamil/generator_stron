@@ -28,6 +28,10 @@
 <?php echo validation_errors(); ?>
 
 <?php echo form_open('form'); ?>
+<?php
+    echo 'Zalogowano jako: '.$this->session->userdata('login');
+    echo '<br>'. '<a href="'.site_url('welcome/logout').'">Wyloguj</a>';
+?>
 <h1> Uzupełnij treść poszczególnych sekcji:</h1>
 <table id="first_table">
     <tr>
@@ -133,7 +137,7 @@
 </table>
   
 <div><input type="submit" value="Generuj" />
-</form>
+<?php echo form_close(); ?>
 </div>
 </body>
 </html>

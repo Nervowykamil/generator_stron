@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?><!DOCTYPE html>
 <html LANG=PL>
@@ -10,25 +10,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </head>
 <body>
 
-<!-- środkowy -->
 <div class="c_filler">
-	<!-- śr górny -->
 	<div class="c_up">
-		<a href="/index.php/generator">
-		<div class="btn">
-		</div>
-		</a>
 	</div>
-	<!-- śr dolny -->
 	<div class="c_down">
-	<p style="color: #003399; text-align: center;">Witaj w generatorze stron internetowych dla uczelnianych klubów sportowych.
-	<BR> Strona generuje kod źródłowy stron i podstron oraz arkusze stylów.
-	<BR> Aby przejść do generownaia stron zaloguj się lub zarejestruj.
+    <p style="color: #003399; text-align: center;">Rejestracja
     <BR> Wersja Codeignitera <?php echo CI_VERSION ?>
 	</p>
     <?php echo validation_errors(); ?>
 
-    <?php echo form_open('welcome/login'); ?>
+    <?php echo form_open('welcome/register'); ?>
     <table align="center">
         <tr>
             <td>
@@ -49,12 +40,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </tr>
         <tr>
             <td>
-            <input type="submit" value="Zaloguj" />
+            <input type="submit" value="Zarejestruj" />
             </td>
             <td>
-            &nbsp
-            <a href="<?php echo site_url('/welcome/register_page')?>">
-            Rejestracja
+            <a href="<?php echo site_url('/welcome/index')?>">
+            Strona logowania.
             </a>
             </td>
 
