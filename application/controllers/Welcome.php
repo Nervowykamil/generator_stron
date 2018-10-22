@@ -48,10 +48,14 @@ class Welcome extends CI_Controller {
         
         $this->load->database();
         
+        // double encryption        
+        $sha1pass = sha1($_POST['password']);
+        $md5pass = md5($sha1pass);
+        
         $query = $this->db->query('SELECT id, login, haslo FROM uzytkownicy WHERE login ="'.$_POST['login'].'";');
         foreach ($query->result() as $row)
         {
-            if ($row->login != $_POST['login'] || $row->haslo != $_POST['password'])
+            if ($row->login != $_POST['login'] || $row->haslo != $md5pass)
             {
                 $this->session->set_userdata('zalogowany', false);
                 redirect('/welcome/badpassword');
@@ -80,7 +84,7 @@ class Welcome extends CI_Controller {
     {
         $this->load->helper(array('form', 'url'));
         $_POST['message'] = "Podane hasło jest nie prawidłowe.";
-        $this->load->view("/welcome_message");
+        $this->load->view("welcome_message");
     }
     
     public function register_page()
@@ -114,7 +118,11 @@ class Welcome extends CI_Controller {
             return;
         }
         
-        if($this->db->query('INSERT INTO uzytkownicy (login, haslo) VALUES ("'.$login.'", "'.$password.'");'))
+        // double encryption        
+        $sha1pass = sha1($password);
+        $md5pass = md5($sha1pass);
+        
+        if($this->db->query('INSERT INTO uzytkownicy (login, haslo) VALUES ("'.$login.'", "'.$md5pass.'");'))
         {
             $_POST['message'] = "Zarejestrowano jako ".$login.", teraz możesz się zalogować.";
             $this->load->view('welcome_message');
